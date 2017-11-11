@@ -1,24 +1,15 @@
-# README
+# Compare CSV files
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+- Bundle install
+- rails s
+- Open in browser "http://localhost:3000"
 
-* Ruby version
+## Use case
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Enter url's into input fields
+- Click on "Choose columns to compare"
+- It will import file in background and generate available headers
+- Choose from dropdown (exp. "id")
+- Click Generate... And you will get csv file with differences only!

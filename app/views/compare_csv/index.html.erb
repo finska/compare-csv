@@ -1,0 +1,37 @@
+<div class="container h-100">
+    <br>
+    <div class="text-center">
+        <h1>Compare CSV files</h1>
+    </div>
+    <hr>
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-8">
+            <form method="post" action="/compare/analyze">
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-8">
+                <input type="url" class="form-control" id="csv-file-old" aria-describedby="emailHelp" name="csv_file_old" placeholder="CSV OLD" required>
+                      </div>
+                      <div class="col-4" id="div-choose-old">
+                          <a href="#" class="btn btn-danger" id="choose_parameter_old" name="choose_parameter_old">Choose parameters to compare</a>
+                      </div>
+                  </div>
+                  <small id="emailHelp" class="form-text text-muted">Enter here url address http://something.com/.... or path to file D:\something\some</small>
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-8">
+                          <input type="text" class="form-control" id="csv-file-new" name="csv_file_new" placeholder="CSV NEW" required>
+                      </div>
+                      <div class="col-4" id="div-choose-new">
+                          <a href="#" class="btn btn-danger" id="choose_parameter_new" name="choose_parameter_new">Choose columns to compare</a>
+                      </div>
+                  </div>
+
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Generate CSV file with differences only</button>
+            </form>
+        </div>
+    </div>
+</div>
+
