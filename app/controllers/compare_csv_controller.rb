@@ -68,6 +68,26 @@ class CompareCsvController < ApplicationController
 	end
 	
 	
+	def send_data_for_html_table
+		header_old = params[:select_header_old]
+		header_new = params[:select_header_new]
+		headers_all_old = headers_from_csv(open(params[:csv_file_old]))
+		index_old = headers_all_old.index(header_old)
+		index_new = headers_from_csv(open(params[:csv_file_new])).index(header_new)
+		old_csv = csv_from_url(params[:csv_file_old])
+		new_csv = csv_from_url(params[:csv_file_new])
+		old_array = convert_to_array(old_csv, index_old)
+		new_array = convert_to_array(new_csv, index_new)
+		only_in_old = old_array - new_array
+		only_in_new = new_array - old_array
+		old_data = find_whole_rows_based_on_one_column(old_csv, only_in_old, index_old)
+		new_data = find_whole_rows_based_on_one_column(new_csv, only_in_new, index_new)
+		respond_to do |format|
+			format.json {render json: {'old_data' => old_data, 'new_data' => new_data, 'params_all' => params}}
+		end
+	end
+	
+	
 	private
 	def csv_from_url(url)
 		CSV.read(open(url))

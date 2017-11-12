@@ -6,14 +6,14 @@
     <hr>
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-8">
-            <form method="post" action="/compare/analyze">
+            <form method="post" action="/compare/analyze" onsubmit="displayResetBtn()">
               <div class="form-group">
                   <div class="row">
                       <div class="col-8">
                 <input type="url" class="form-control" id="csv-file-old" aria-describedby="emailHelp" name="csv_file_old" placeholder="CSV OLD" required>
                       </div>
                       <div class="col-4" id="div-choose-old">
-                          <a href="#" class="btn btn-danger" id="choose_parameter_old" name="choose_parameter_old">Choose parameters to compare</a>
+                          <a href="#" class="btn btn-danger" id="choose_parameter_old" name="choose_parameter_old">Choose columns to compare</a>
                       </div>
                   </div>
                   <small id="emailHelp" class="form-text text-muted">Enter here url address http://something.com/.... or path to file D:\something\some</small>
@@ -29,7 +29,8 @@
                   </div>
 
               </div>
-              <button type="submit" class="btn btn-primary btn-block">Generate CSV file with differences only</button>
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-block">Generate CSV file with differences only</button>
+                <div class="display-here"></div>
             </form>
         </div>
     </div>
