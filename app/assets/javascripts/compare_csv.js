@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var counter = 0;
     var submit_btn = $("#submit-btn");
+    var input_old = $("input[name='csv_file_old']").val();
+    var input_new = $("input[name='csv_file_new']").val();
     submit_btn.prop('disabled', true);
     $("#choose_parameter_old").click(function (e) {
         e.preventDefault();
@@ -44,31 +46,15 @@ $(document).ready(function () {
             }
         });
     });
-    $("form").on("submit", function () {
-        var inputs = $(this).serialize();
-        $.ajax({
-          method: "POST",
-          url: "/ajax/generate-html-table",
-          data: inputs,
-          success: function( data ) {
-            console.log(data);
-          }
-        });
+
+    $("#submit-btn").click(function () {
+        setTimeout(function () {
+            $("#div-choose-old").html(
+                `<a href="#" class="btn btn-danger btn-block" id="choose_parameter_old" name="choose_parameter_old">Choose columns to compare</a>`);
+            $("#div-choose-new").html(
+                `<a href="#" class="btn btn-danger btn-block" id="choose_parameter_new" name="choose_parameter_new">Choose columns to compare</a>`);
+            $("#csv-file-old").prop('disabled', false);
+            $("#csv-file-new").prop('disabled', false);
+        }, 2000);
     });
 });
-
-function displayResetBtn() {
-    setTimeout(function () {
-        $(".display-here").html(
-            `<a href="#" class="btn btn-danger btn-block" id="reset">Reset</a>`);
-        $("#submit-btn").hide();
-        $("#csv-file-old").prop('disabled', true);
-        $("#csv-file-new").prop('disabled', true);
-        $("#select-old").prop('disabled', true);
-        $("#select-new").prop('disabled', true);
-    }, 2000);
-    $("#reset").click(function (e) {
-        e.preventDefault();
-        location.reload();
-    });
-}
