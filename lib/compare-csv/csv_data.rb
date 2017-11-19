@@ -35,4 +35,15 @@ class CsvData
 		end
 		return csv
 	end
+	
+	
+	def make_file_mapped(data, params)
+		attributes = Headers.new.all_old(params)
+		CSV.open('mapped.csv', 'wb') do |csv|
+			csv << attributes
+			data.each do |row|
+				csv << row
+			end
+		end
+	end
 end

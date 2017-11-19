@@ -5,26 +5,39 @@
     </div>
     <hr>
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-6">
-            <form method="post" action="/compare/analyze">
+        <div class="col-7">
+            <form method="post" action="/compare/analyze" id="main-form">
               <div class="form-group">
                   <div class="row">
-                      <div class="col-8">
-                <input type="url" class="form-control" id="csv-file-old" aria-describedby="emailHelp" name="csv_file_old" placeholder="CSV OLD" required>
+                      <div class="col-7">
+                <input type="url" class="form-control" id="csv-file-old" name="csv_file_old" placeholder="CSV OLD" required>
+
                       </div>
-                      <div class="col-4" id="div-choose-old">
+                      <div class="col-3" id="div-choose-old">
                           <a href="#" class="btn btn-danger btn-block" id="choose_parameter_old" name="choose_parameter_old">Choose columns to compare</a>
                       </div>
+                      <div class="col-2" id="map-old">
+                          <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#map-old-modal" id="trigger-old-modal">
+                          Map
+                        </button>
+                      </div>
                   </div>
-                  <small id="emailHelp" class="form-text text-muted">Enter here url address http://something.com/.... or path to file D:\something\some</small>
+                  <small id="emailHelp" class="form-text text-muted">Enter here url address http://something.com/....</small>
               </div>
               <div class="form-group">
                   <div class="row">
-                      <div class="col-8">
+                      <div class="col-7">
                           <input type="text" class="form-control" id="csv-file-new" name="csv_file_new" placeholder="CSV NEW" required>
                       </div>
-                      <div class="col-4" id="div-choose-new">
+                      <div class="col-3" id="div-choose-new">
                           <a href="#" class="btn btn-danger btn-block" id="choose_parameter_new" name="choose_parameter_new">Choose columns to compare</a>
+                      </div>
+                      <div class="col-2" id="map-new">
+                            <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#map-new-modal" id="trigger-new-modal">
+                          Map
+                        </button>
                       </div>
                   </div>
 
@@ -34,5 +47,85 @@
             </form>
         </div>
     </div>
+</div>
+
+
+
+<!-- Modal Old-->
+<div class="modal fade" id="map-old-modal" tabindex="-1" role="dialog" aria-labelledby="map-old-modal" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <form action="/ajax/map-modal-old">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="map-old-modal">Map files</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="input-group">
+              <input type="text" name="old_url_to_map" class="form-control" placeholder="Enter URL of file for mapping columns">
+              <input type="text" name="old_column_to_map" class="form-control" placeholder="Enter URL of file for mapping columns">
+          </div>
+        <div class="text-center">
+          <h4>Map <span id="column-name-old"></span> column from OLD file to:</h4>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <input type="text" name="map_modal_old_url" class="form-control" placeholder="Enter URL of file for mapping columns">
+            </div>
+            <div class="col-4" id="choose_modal_old_space">
+                <a href="#" class="btn btn-success btn-block" id="choose_modal_old" name="choose_modal_old">Choose column to map to</a>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary save-btn-old">Save changes</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal New -->
+<div class="modal fade" id="map-new-modal" tabindex="-1" role="dialog" aria-labelledby="map-new-modal" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <form action="/ajax/map-modal-new">
+      <div class="modal-header">
+        <h5 class="modal-title" id="map-new-modal">Map files</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="input-group">
+              <input type="text" name="new_url_to_map" class="form-control" placeholder="Enter URL of file for mapping columns">
+              <input type="text" name="new_column_to_map" class="form-control" placeholder="Enter URL of file for mapping columns">
+          </div>
+          <div class="text-center">
+          <h4>Map <span id="column-name-new"></span> column from NEW file to:</h4>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <input type="text" name="map_modal_new_url" class="form-control" placeholder="Enter URL of file for mapping columns">
+            </div>
+            <div class="col-4" id="choose_modal_new_space">
+                <a href="#" class="btn btn-success btn-block" id="choose_modal_new" name="choose_modal_new">Choose column to map to</a>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save-btn-new">Save changes</button>
+      </div>
+        </form>
+    </div>
+  </div>
 </div>
 
