@@ -1,15 +1,26 @@
 class Array
 	def converted_old(params)
-		old_file = CsvData.new.old_file(params)
-		index = Headers.new.selected_index_old(params)
+		if params.has_key?(:mapped_csv_file_old)
+			old_file = CSV.read(open(params[:mapped_csv_file_old]))
+			index = CSV.read(open(params[:mapped_csv_file_old]), :headers => true).headers.index(params[:mapped_selected_field_old])
+		else
+			old_file = CsvData.new.old_file(params)
+			index = Headers.new.selected_index_old(params)
+		end
 		convert_to_array(old_file, index)
 	end
 	
 	
 	def converted_new(params)
-		old_file = CsvData.new.new_file(params)
-		index = Headers.new.selected_index_new(params)
-		convert_to_array(old_file, index)
+		if params.has_key?(:mapped_csv_file_new)
+			new_file = CSV.read(open(params[:mapped_csv_file_new]))
+			index = CSV.read(open(params[:mapped_csv_file_new]), :headers => true).headers.index(params[:mapped_selected_field_new])
+		else
+			new_file = CsvData.new.new_file(params)
+			index = Headers.new.selected_index_new(params)
+		end
+		
+		convert_to_array(new_file, index)
 	end
 	
 	

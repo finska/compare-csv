@@ -3,7 +3,11 @@ $(document).ready(function () {
     var submit_btn = $("#submit-btn");
     var input_old = $("input[name='csv_file_old']").val();
     var input_new = $("input[name='csv_file_new']").val();
+    var trigger_old_modal_btn = $("#trigger-old-modal");
+    var trigger_new_modal_btn = $("#trigger-new-modal");
     submit_btn.prop('disabled', true);
+    trigger_old_modal_btn.prop('disabled', true);
+    trigger_new_modal_btn.prop('disabled', true);
     $("#choose_parameter_old").click(function (e) {
         e.preventDefault();
         var address = $("input[name='csv_file_old']").val();
@@ -21,6 +25,8 @@ $(document).ready(function () {
                 counter++;
                 if (counter == 2) {
                     submit_btn.prop('disabled', false);
+                    trigger_old_modal_btn.prop('disabled', false);
+                    trigger_new_modal_btn.prop('disabled', false);
                 }
             }
         });
@@ -42,6 +48,8 @@ $(document).ready(function () {
                 counter++;
                 if (counter == 2) {
                     submit_btn.prop('disabled', false);
+                    trigger_old_modal_btn.prop('disabled', false);
+                    trigger_new_modal_btn.prop('disabled', false);
                 }
             }
         });
@@ -103,24 +111,44 @@ $(document).ready(function () {
         });
     });
 
-    $("#submit-btn").click(function () {
-        setTimeout(function () {
-            $("#div-choose-old").html(
-                `<a href="#" class="btn btn-danger btn-block" id="choose_parameter_old" name="choose_parameter_old">Choose columns to compare</a>`);
-            $("#div-choose-new").html(
-                `<a href="#" class="btn btn-danger btn-block" id="choose_parameter_new" name="choose_parameter_new">Choose columns to compare</a>`);
-            $("#csv-file-old").prop('disabled', false);
-            $("#csv-file-new").prop('disabled', false);
-        }, 2000);
-    });
+//     $("#submit-btn").click(function () {
+//         setTimeout(function () {
+//             $(".display-here").html(
+//                 `<a href="/" class="btn btn-danger btn-block" id="reset">Reset</a>`);
+//             $("#submit-btn").hide();
+//             $("#csv-file-old").prop('disabled', true);
+//             $("#csv-file-new").prop('disabled', true);
+//             $("#select-old").prop('disabled', true);
+//             $("#select-new").prop('disabled', true);
+//         }, 2000);
+//     });
+//
+//     $("#reset").click(function (e) {
+//         e.preventDefault();
+//         location.reload();
+//     });
 
     $(".save-btn-old").click(function (e) {
         e.preventDefault();
         var mapped_old = $("input[name='map_modal_old_url']").val();
         var selected = $("#select-old-modal").val();
-        console.log(mapped_old);
         $("#map-old-modal").modal('hide');
-        $("#main-form").append(`<input type="hidden" name="mapped-csv-file-old" value="${mapped_old}">`);
-        $("#main-form").append(`<input type="hidden" name="mapped-selected-field-old" value="${selected}">`);
+        $("#main-form").append(
+            `<input type="hidden" name="mapped_csv_file_old" value="${mapped_old}">`);
+        $("#main-form").append(
+            `<input type="hidden" name="mapped_selected_field_old" value="${selected}">`);
+        $("#map-old").html(`<h3 class="text-danger">Mapped</h3>`);
+    });
+
+    $(".save-btn-new").click(function (e) {
+        e.preventDefault();
+        var mapped_new = $("input[name='map_modal_new_url']").val();
+        var selected = $("#select-new-modal").val();
+        $("#map-new-modal").modal('hide');
+        $("#main-form").append(
+            `<input type="hidden" name="mapped_csv_file_new" value="${mapped_new}">`);
+        $("#main-form").append(
+            `<input type="hidden" name="mapped_selected_field_new" value="${selected}">`);
+        $("#map-new").html(`<h3 class="text-danger">Mapped</h3>`)
     });
 });
