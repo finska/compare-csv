@@ -37,10 +37,8 @@ class CsvData
 	end
 	
 	
-	def make_file_mapped(data, params)
-		attributes = Headers.new.all_old(params)
+	def make_file_mapped(data)
 		CSV.open('mapped.csv', 'wb') do |csv|
-			csv << attributes
 			data.each do |row|
 				csv << row
 			end
